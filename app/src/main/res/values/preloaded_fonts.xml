@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/</item>
+        <item>@font/almendra_sc</item>
+        <item>@font/averia_libre_bold</item>
+        <item>@font/belgrano</item>
+        <item>@font/creepster</item>
+        <item>@font/frijole</item>
+        <item>@font/kavoon</item>
+        <item>@font/marko_one</item>
+        <item>@font/rock_salt</item>
+    </array>
+</resources>
