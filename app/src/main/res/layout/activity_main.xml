@@ -40,6 +40,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cEditProfile"
             android:layout_width="374dp"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
@@ -243,7 +244,7 @@
         android:layout_marginBottom="5dp"
         android:fontFamily="@font/creepster"
         android:text="FARM SHARE"
-        android:textColor="#6CC111"
+        android:textColor="#E1BE22"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/textView11"
         app:layout_constraintEnd_toEndOf="parent"
@@ -260,7 +261,7 @@
         android:layout_marginBottom="66dp"
         android:fontFamily="@font/creepster"
         android:text=" SOLUTIONS"
-        android:textColor="#6ABD11"
+        android:textColor="#E1BE22"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
