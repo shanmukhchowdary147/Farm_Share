@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "256116453498",
-    "firebase_url": "https://farmshare-3f2c4.firebaseio.com",
-    "project_id": "farmshare-3f2c4",
-    "storage_bucket": "farmshare-3f2c4.appspot.com"
+    "project_number": "665960607847",
+    "firebase_url": "https://farm-share-solutions-f2b74.firebaseio.com",
+    "project_id": "farm-share-solutions-f2b74",
+    "storage_bucket": "farm-share-solutions-f2b74.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:256116453498:android:7ee8bbfe95a02063924bc3",
+        "mobilesdk_app_id": "1:665960607847:android:0e6c195c6843ea3f4e64c2",
         "android_client_info": {
           "package_name": "com.example.farm_share"
         }
       },
       "oauth_client": [
         {
-          "client_id": "256116453498-ono4hahuv37ig17bvc110ba2e3ino7tf.apps.googleusercontent.com",
+          "client_id": "665960607847-9figb8t0bhsmjbm3n4ck5st1qe953e14.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.farm_share",
-            "certificate_hash": "62d293bcbd4b54f1e023b446781403bca2f7b4e8"
+            "certificate_hash": "cb31580e3ccaaae71825ba99d2e6269c01c8a7ec"
           }
         },
         {
-          "client_id": "256116453498-brvsrrto9ubvujouvo8vajrf58sibm82.apps.googleusercontent.com",
+          "client_id": "665960607847-j064011l08rtuseln7lcu22ri3v70jj2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB9tH8b_p2lJqCDhLLoOZVe4zCjL3GvmYY"
+          "current_key": "AIzaSyAzK0abE1VM4zXBKa8zHZwUzHGtUkxYFFE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "256116453498-brvsrrto9ubvujouvo8vajrf58sibm82.apps.googleusercontent.com",
+              "client_id": "665960607847-j064011l08rtuseln7lcu22ri3v70jj2.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
