@@ -4,38 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/logwal"
     tools:context=".Login">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="161dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="161dp"
-        android:layout_marginBottom="64dp"
-        app:layout_constraintBottom_toTopOf="@+id/Email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:srcCompat="@drawable/logo" />
 
     <EditText
         android:id="@+id/Email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="350dp"
-        android:background="@drawable/input_bg"
+        android:layout_marginBottom="400dp"
         android:drawableLeft="@drawable/ic_email_24dp"
         android:ems="10"
         android:fontFamily="@font/belgrano"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:padding="10dp"
-        android:textColor="#FFFFFF"
+        android:textColor="#070707"
         android:textColorHint="#070707"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -51,14 +37,13 @@
         android:layout_marginTop="35dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="50dp"
-        android:background="@drawable/input_bg"
         android:drawableLeft="@drawable/ic_security"
         android:ems="10"
         android:fontFamily="@font/belgrano"
         android:hint="Password"
         android:inputType="textPassword"
         android:padding="10dp"
-        android:textColor="#FFFFFF"
+        android:textColor="#050505"
         android:textColorHint="#050505"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/loginBtn"
@@ -88,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="New Here ?  Create Account"
-        android:textColor="#5DA80E"
+        android:textColor="#050505"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
@@ -103,14 +88,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createText"
-        app:layout_constraintVertical_bias="0.39" />
+        app:layout_constraintVertical_bias="0.39"/>
 
     <TextView
         android:id="@+id/forgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Forgot Password ?"
-        android:textColor="#5DA80E"
+        android:textColor="#050505"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -119,37 +104,21 @@
         app:layout_constraintVertical_bias="0.19999999" />
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="100dp"
-        android:fontFamily="@font/averia_libre_bold"
-        android:text="FARM SHARE"
-        android:textColor="#5DA80E"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="125dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="125dp"
         android:layout_marginEnd="125dp"
         android:layout_marginBottom="100dp"
-        android:fontFamily="@font/averia_libre_bold"
-        android:text="SOLUTIONS"
+        android:fontFamily="@font/arbutus"
+        android:text="WELCOME"
         android:textColor="#5DA80E"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/Email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

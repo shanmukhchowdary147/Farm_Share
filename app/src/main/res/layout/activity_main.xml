@@ -65,6 +65,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:text="PROFILE"
+                    android:textColor="#5DA80E"
                     android:textSize="18sp" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -99,6 +100,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:text="SEARCH"
+                    android:textColor="#5DA80E"
                     android:textSize="18sp" />
 
             </RelativeLayout>
@@ -145,6 +147,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:text="ADD"
+                    android:textColor="#5DA80E"
                     android:textSize="18sp" />
 
             </RelativeLayout>
@@ -179,6 +182,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:text="ACTIVITY"
+                    android:textColor="#5DA80E"
                     android:textSize="18sp" />
 
             </RelativeLayout>
@@ -226,6 +230,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:text="FAVOURITES"
+                    android:textColor="#5DA80E"
                     android:textSize="18sp" />
 
             </RelativeLayout>
@@ -260,6 +265,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:text="LOGOUT"
+                    android:textColor="#5DA80E"
                     android:textSize="18sp" />
 
             </RelativeLayout>

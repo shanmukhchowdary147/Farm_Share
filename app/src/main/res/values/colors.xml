@@ -5,4 +5,5 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="btColor">#5DA80E</color>
+    <color name="colorBlack">#050505</color>
 </resources>
