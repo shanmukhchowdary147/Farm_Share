@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/edit"
+    android:background="@drawable/bg1"
     tools:context=".EditProfile">
 
     <EditText
@@ -17,8 +17,8 @@
         android:ems="10"
         android:hint="Your Name"
         android:inputType="textPersonName"
-        android:textColor="#3949AB"
-        android:textColorHint="#3949AB"
+        android:textColor="#050505"
+        android:textColorHint="#050505"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileImageView" />
@@ -43,8 +43,8 @@
         android:ems="10"
         android:hint="Your Email Address"
         android:inputType="textEmailAddress"
-        android:textColor="#3949AB"
-        android:textColorHint="#3949AB"
+        android:textColor="#050505"
+        android:textColorHint="#050505"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
@@ -60,20 +60,17 @@
         android:hint="Phone"
         android:inputType="phone"
         android:textColor="#3949AB"
-        android:textColorHint="#3949AB"
+        android:textColorHint="#050505"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileEmailAddress" />
 
     <Button
         android:id="@+id/saveProfileInfo"
-        android:layout_width="210dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="187dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="70dp"
-        android:background="@drawable/button_corn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="277dp"
+        android:background="@color/btColor"
         android:text="Save"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
