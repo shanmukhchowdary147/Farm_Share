@@ -7,6 +7,8 @@
     android:background="@drawable/bg1"
     tools:context=".Add_Equip">
 
+
+        />
     <EditText
         android:id="@+id/title"
         android:layout_width="0dp"
