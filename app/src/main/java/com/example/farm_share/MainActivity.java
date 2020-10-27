@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(i);
                 break;
             case R.id.cAdd :
-                i=new Intent(this,Add_Equip.class);
+                i=new Intent(this,AdminCategoryActivity.class);
                 startActivity(i);
                 break;
             case R.id.cLogout :
