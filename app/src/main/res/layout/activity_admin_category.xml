@@ -14,6 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="85dp"
+        android:layout_marginEnd="45dp"
         android:fontFamily="@font/arbutus"
         android:text="ADD NEW EQUIPMENT"
         android:textAlignment="center"
@@ -29,7 +30,7 @@
         android:layout_below="@+id/slogan_category"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="125dp"
+        android:layout_marginTop="95dp"
         android:layout_marginRight="10dp"
         android:gravity="center"
         android:orientation="horizontal">
