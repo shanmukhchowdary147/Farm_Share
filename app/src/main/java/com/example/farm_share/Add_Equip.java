@@ -20,6 +20,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -38,14 +40,17 @@ public class Add_Equip extends AppCompatActivity {
     private Uri ImageUri;
     private String EquipRandomKey, downloadImageUrl;
     private StorageReference EqipImagesRef;
+    private DatabaseReference EquipsRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__equip);
 
+
         CategoryName = getIntent() .getExtras().get("category").toString();
         EqipImagesRef = FirebaseStorage.getInstance().getReference().child("Equip Images");
+        EquipsRef= FirebaseDatabase.getInstance().getReference().child("Equipments");
 
         Toast.makeText(this, CategoryName, Toast.LENGTH_SHORT).show();
         AddNew=(Button) findViewById(R.id.AddNew);
@@ -193,6 +198,22 @@ public class Add_Equip extends AppCompatActivity {
         Equipmap.put("Cost",DCost);
         Equipmap.put("Days",DDays);
         Equipmap.put("ContactNumber",DContactNumber);
+
+        EquipsRef.child(EquipRandomKey).updateChildren(Equipmap)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful())
+                        {
+                            Toast.makeText(Add_Equip.this, "Equipment is added Successfully ", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            String message = task.getException().toString();
+                            Toast.makeText(Add_Equip.this, "Error"+message, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
     }
 }
