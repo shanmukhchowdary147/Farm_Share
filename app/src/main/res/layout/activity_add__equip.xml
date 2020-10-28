@@ -9,7 +9,7 @@
 
 
     <ImageView
-        android:id="@+id/ProductImage"
+        android:id="@+id/EquipImage"
         android:layout_width="250dp"
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
@@ -23,7 +23,7 @@
         android:id="@+id/Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ProductImage"
+        android:layout_below="@+id/EquipImage"
         android:layout_marginLeft="45dp"
         android:layout_marginTop="70dp"
         android:layout_marginRight="45dp"
