@@ -50,7 +50,7 @@ public class Add_Equip extends AppCompatActivity {
 
         CategoryName = getIntent() .getExtras().get("category").toString();
         EqipImagesRef = FirebaseStorage.getInstance().getReference().child("Equip Images");
-        EquipsRef= FirebaseDatabase.getInstance().getReference().child("Equipments")
+        EquipsRef= FirebaseDatabase.getInstance().getReference().child("Equipments");
 
         Toast.makeText(this, CategoryName, Toast.LENGTH_SHORT).show();
         AddNew=(Button) findViewById(R.id.AddNew);
