@@ -21,16 +21,20 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Register extends AppCompatActivity {
-    public static final String TAG = "TAG";
-    EditText mFullName,mEmail,mPassword,mPhone;
-    Button mRegisterBtn;
+
+    private EditText InFullName,InEmail,InPassword,InPhone;
+    private Button mRegisterBtn;
     TextView mLoginBtn;
-    FirebaseAuth fAuth;
     ProgressBar progressBar;
 
     String userID;
@@ -39,77 +43,114 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        mFullName   = findViewById(R.id.fullName);
-        mEmail      = findViewById(R.id.Email);
-        mPassword   = findViewById(R.id.password);
-        mPhone      = findViewById(R.id.phone);
-        mRegisterBtn= findViewById(R.id.registerBtn);
-        mLoginBtn   = findViewById(R.id.createText);
+        InFullName   = (EditText)findViewById(R.id.fullName);
+        InEmail      = (EditText)findViewById(R.id.Email);
+        InPassword   = (EditText)findViewById(R.id.password);
+        InPhone      =(EditText) findViewById(R.id.phone);
+        mRegisterBtn= (Button)findViewById(R.id.registerBtn);
+        mLoginBtn   = (TextView)findViewById(R.id.createText);
 
-        fAuth = FirebaseAuth.getInstance();
+
 
         progressBar = findViewById(R.id.progressBar);
 
-        if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-            finish();
-        }
-
-
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                final String email = mEmail.getText().toString().trim();
-                String password = mPassword.getText().toString().trim();
-                final String fullName = mFullName.getText().toString();
-                final String phone    = mPhone.getText().toString();
-
-                if(TextUtils.isEmpty(email)){
-                    mEmail.setError("Email is Required.");
-                    return;
-                }
-
-                if(TextUtils.isEmpty(password)){
-                    mPassword.setError("Password is Required.");
-                    return;
-                }
-
-                if(password.length() < 6){
-                    mPassword.setError("Password Must be >= 6 Characters");
-                    return;
-                }
-
-                progressBar.setVisibility(View.VISIBLE);
-
-                // register the user in firebase
-
-                fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-
-                            //
-                                    Toast.makeText(Register.this, "User Created", Toast.LENGTH_SHORT).show();
-
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-
-                        }else {
-                            Toast.makeText(Register.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.GONE);
-                        }
-                    }
-                });
+            public void onClick(View view) {
+                CreateAcc();
             }
         });
 
 
 
+    }
+
+    private void CreateAcc() {
+        String name=InFullName.getText().toString();
+        String email=InEmail.getText().toString();
+        String phone=InPhone.getText().toString();
+        String password=InPassword.getText().toString();
+
+        if (TextUtils.isEmpty(name))
+        {
+            Toast.makeText(this, "Please write your name...", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(email))
+        {
+            Toast.makeText(this, "Please enter your Email...", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(phone))
+        {
+            Toast.makeText(this, "Please write your phone number...", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(password))
+        {
+            Toast.makeText(this, "Please write your password...", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            progressBar.setVisibility(View.VISIBLE);
+            ValidatePhoneNumber(name,phone,email,password);
+        }
+
+    }
+
+    private void ValidatePhoneNumber(final String name, final String phone, final String email, final String password) {
+        final DatabaseReference RootRef;
+        RootRef= FirebaseDatabase.getInstance().getReference();
+
+        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (!(dataSnapshot.child("Users").child(phone).exists()))
+                {
+                    HashMap<String, Object> userdataMap=new HashMap<>();
+                    userdataMap.put("phone",phone);
+                    userdataMap.put("name",name);
+                    userdataMap.put("email",email);
+                    userdataMap.put("password",password);
+
+                    RootRef.child("Users").child(phone).updateChildren(userdataMap)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful())
+                                    {
+                                        Toast.makeText(Register.this, "Your Account has been Created", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                        progressBar.setVisibility(View.GONE);
+
+                                    }
+                                    else
+                                    {
+                                        progressBar.setVisibility(View.GONE);
+                                        Toast.makeText(Register.this, "Network Error!! Try Again", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+
+                }
+                else
+                {
+                    Toast.makeText(Register.this, "This Phone Number"+phone+"already exists", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 startActivity(new Intent(getApplicationContext(),Login.class));
             }
         });
-
     }
+
+
 }
