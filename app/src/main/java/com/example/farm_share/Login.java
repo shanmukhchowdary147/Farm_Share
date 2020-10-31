@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.farm_share.Model.Users;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,7 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
-    EditText InEmail,InPassword,InPhone;
+    EditText InPassword,InPhone;
     Button mLoginBtn;
     TextView mCreateBtn,forgotTextLink;
     ProgressBar progressBar;
@@ -40,7 +41,6 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        InEmail = (EditText)findViewById(R.id.Email);
         InPassword =(EditText) findViewById(R.id.password);
         mLoginBtn = (Button)findViewById(R.id.loginBtn);
         mCreateBtn = (TextView)findViewById(R.id.createText);
@@ -70,12 +70,12 @@ public class Login extends AppCompatActivity {
     }
 
     private void LoginUser() {
-        String email=InEmail.getText().toString();
+
         String password=InPassword.getText().toString();
         String phone=InPhone.getText().toString();
-        if (TextUtils.isEmpty(email))
+        if (TextUtils.isEmpty(phone))
         {
-            Toast.makeText(this, "Please enter your Email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter your phone Number", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(password))
         {
@@ -85,11 +85,11 @@ public class Login extends AppCompatActivity {
         {
             progressBar.setVisibility(View.VISIBLE);
 
-            AllowAccessToAcc(email,phone,password);
+            AllowAccessToAcc(phone,password);
         }
     }
 
-    private void AllowAccessToAcc(String email, final String phone, String password) {
+    private void AllowAccessToAcc(final String phone, final String password) {
         final DatabaseReference RootRef;
         RootRef= FirebaseDatabase.getInstance().getReference();
 
@@ -98,10 +98,21 @@ public class Login extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child("Users").child(phone).exists())
                 {
+                    Users userData= (Users) dataSnapshot.child("Users").child(phone).getValue(Users.class);
+                    if (userData.getPhone().equals(phone))
+                    {
+                        if (userData.getPasswod().equals(password))
+                        {
+                            Toast.makeText(Login.this, "Login Success..", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            progressBar.setVisibility(View.GONE);
+                        }
+                    }
 
                 }
                 else
                 {
+                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(Login.this, "Account with this ddeatils doesnot exist..", Toast.LENGTH_SHORT).show();
                 }
             }
