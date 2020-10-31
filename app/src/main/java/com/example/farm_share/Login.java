@@ -95,10 +95,10 @@ public class Login extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child("Users").child(phone).exists())
                 {
-                    Users userData= (Users) dataSnapshot.child("Users").child(phone).getValue(Users.class);
+                    Users userData= dataSnapshot.child("Users").child(phone).getValue(Users.class);
                     if (userData.getPhone().equals(phone))
                     {
-                        if (userData.getPasswod().equals(password))
+                        if (userData.getPassword().equals(password))
                         {
                             Toast.makeText(Login.this, "Login Success..", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
