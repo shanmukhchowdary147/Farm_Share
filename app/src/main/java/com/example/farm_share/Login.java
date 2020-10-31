@@ -48,21 +48,18 @@ public class Login extends AppCompatActivity {
 
         progressBar = findViewById(R.id.progressBar);
 
+        mCreateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),Register.class));
+            }
+        });
+
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 LoginUser();
 
-            }
-        });
-
-
-
-
-        mCreateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Register.class));
             }
         });
 
@@ -83,8 +80,8 @@ public class Login extends AppCompatActivity {
         }
         else
         {
-            progressBar.setVisibility(View.VISIBLE);
 
+            progressBar.setVisibility(View.VISIBLE);
             AllowAccessToAcc(phone,password);
         }
     }
@@ -113,7 +110,7 @@ public class Login extends AppCompatActivity {
                 else
                 {
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(Login.this, "Account with this ddeatils doesnot exist..", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Account with this deatils doesnot exist..", Toast.LENGTH_SHORT).show();
                 }
             }
 
