@@ -50,9 +50,15 @@ public class Register extends AppCompatActivity {
         mRegisterBtn= (Button)findViewById(R.id.registerBtn);
         mLoginBtn   = (TextView)findViewById(R.id.createText);
 
-
-
         progressBar = findViewById(R.id.progressBar);
+
+        mLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                startActivity(new Intent(getApplicationContext(),Login.class));
+            }
+        });
 
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,13 +149,7 @@ public class Register extends AppCompatActivity {
 
             }
         });
-        mLoginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                startActivity(new Intent(getApplicationContext(),Login.class));
-            }
-        });
+
     }
 
 

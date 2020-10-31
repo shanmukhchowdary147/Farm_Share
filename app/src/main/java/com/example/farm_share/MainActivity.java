@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(i);
                 break;
             case R.id.cLogout :
-                FirebaseAuth.getInstance().signOut(); //logout
                 i=new Intent(this,Login.class);
                 startActivity(i);
                 break;

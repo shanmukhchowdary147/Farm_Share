@@ -25,10 +25,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/EquipImage"
         android:layout_marginLeft="45dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="45dp"
         android:hint="Title"
         android:inputType="textMultiLine"
+        android:padding="20dp"
         android:textColor="#050505"
         android:textColorHint="#050505" />
 
@@ -43,6 +44,7 @@
         android:layout_marginRight="45dp"
         android:hint="Addtional Info(company etc)"
         android:inputType="textMultiLine"
+        android:padding="20dp"
         android:textColor="#050505"
         android:textColorHint="#050505" />
 
@@ -57,6 +59,7 @@
         android:layout_marginRight="45dp"
         android:hint="Cost per day"
         android:inputType="textMultiLine"
+        android:padding="20dp"
         android:textColor="#050505"
         android:textColorHint="#050505" />
 
@@ -67,10 +70,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/Cost"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="222dp"
+        android:layout_marginTop="194dp"
         android:layout_marginRight="0dp"
         android:background="@color/colorAccent"
-        android:padding="16dp"
+        android:padding="12dp"
         android:text="ADD"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
@@ -87,6 +90,7 @@
         android:ems="10"
         android:hint="Number of days available"
         android:inputType="number"
+        android:padding="20dp"
         android:textColor="#050505"
         android:textColorHint="#050505" />
 
@@ -101,6 +105,7 @@
         android:ems="10"
         android:hint="contact number"
         android:inputType="number"
+        android:padding="20dp"
         android:textColor="#050505"
         android:textColorHint="#050505" />
 
