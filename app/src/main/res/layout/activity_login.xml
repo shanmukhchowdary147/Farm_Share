@@ -18,7 +18,7 @@
         android:drawableLeft="@drawable/ic_local_phone_24dp"
         android:ems="10"
         android:fontFamily="@font/belgrano"
-        android:hint="Phone Nuber"
+        android:hint="Phone Number"
         android:inputType="textPhonetic"
         android:padding="10dp"
         android:textColor="#050505"
