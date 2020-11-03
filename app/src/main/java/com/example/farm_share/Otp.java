@@ -23,11 +23,14 @@ public class Otp extends AppCompatActivity {
     Button Verify;
     TextView Vlogin;
     ProgressBar progressBar;
+    String verificationId;
+    PhoneAuthProvider.ForceResendingToken token;
+    Boolean verficationInProgress = false;
 
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp);
         fAuth=FirebaseAuth.getInstance();
@@ -42,6 +45,8 @@ public class Otp extends AppCompatActivity {
                 if(!Vphone.getText().toString().isEmpty() && Vphone.getText().toString().length()==10)
                 {
                     progressBar.setVisibility(View.VISIBLE);
+                    Vlogin.setText("Sending OTP..");
+                    Vlogin.setVisibility(View.VISIBLE);
                     requestOTP(Vphone);
                 }
                 else
@@ -56,6 +61,26 @@ public class Otp extends AppCompatActivity {
 
     private void requestOTP(EditText Vphone) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(String.valueOf(Vphone), 60L, TimeUnit.SECONDS, this, new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+            @Override
+            public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                super.onCodeSent(s, forceResendingToken);
+                progressBar.setVisibility(View.GONE);
+                Vlogin.setVisibility(View.GONE);
+                Votp.setVisibility(View.VISIBLE);
+                verificationId = s;
+                token = forceResendingToken;
+                Verify.setText("Verify");
+                Verify.setEnabled(false);
+
+
+            }
+
+            @Override
+            public void onCodeAutoRetrievalTimeOut(String s) {
+                super.onCodeAutoRetrievalTimeOut(s);
+            }
+
             @Override
             public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
 
