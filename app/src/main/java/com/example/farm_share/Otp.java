@@ -30,6 +30,8 @@ public class Otp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp);
+
+
         fAuth=FirebaseAuth.getInstance();
         Vphone=findViewById(R.id.Vphone);
         Votp=findViewById(R.id.Otp);
