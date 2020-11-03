@@ -50,8 +50,17 @@ public class Otp extends AppCompatActivity {
         Vphone=findViewById(R.id.Vphone);
         Votp=findViewById(R.id.Otp);
         Verify=findViewById(R.id.Verify);
-        Vlogin=findViewById(R.id.phone);
+        Vlogin=findViewById(R.id.Vlogin);
         progressBar=findViewById(R.id.progressBar);
+
+        Vlogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),Login.class));
+
+
+            }
+        });
         Verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,7 +69,6 @@ public class Otp extends AppCompatActivity {
                     if(!Vphone.getText().toString().isEmpty() && Vphone.getText().toString().length()==10)
                     {
                         progressBar.setVisibility(View.VISIBLE);
-                        Vlogin.setText("Sending OTP..");
                         Vlogin.setVisibility(View.VISIBLE);
                         requestOTP(Vphone);
 
@@ -73,7 +81,7 @@ public class Otp extends AppCompatActivity {
                 else
                 {
                     String userotp=Votp.getText().toString();
-                    if(!userotp.isEmpty() && userotp.length()==6)
+                    if(userotp.length() == 6)
                     {
                         PhoneAuthCredential credential= PhoneAuthProvider.getCredential(verificationId,userotp);
                         verifyAuth(credential);
@@ -109,7 +117,7 @@ public class Otp extends AppCompatActivity {
         });
     }
 
-    private void Redirect(EditText vphone) {
+    private void Redirect(EditText Vphone) {
         final String SVphone=Vphone.getText().toString();
         final DatabaseReference RootRef;
         RootRef= FirebaseDatabase.getInstance().getReference();
@@ -171,6 +179,7 @@ public class Otp extends AppCompatActivity {
 
             @Override
             public void onVerificationFailed(FirebaseException e) {
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(Otp.this, "Cannot Create Account", Toast.LENGTH_SHORT).show();
 
             }

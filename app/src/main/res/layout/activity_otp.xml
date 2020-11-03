@@ -125,14 +125,14 @@
         app:layout_constraintVertical_bias="0.39" />
 
     <TextView
-        android:id="@+id/PLogin"
+        android:id="@+id/Vlogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
         android:layout_marginTop="39dp"
         android:layout_marginEnd="67dp"
         android:layout_marginBottom="78dp"
-        android:text="Already a customer ? LOGON Here"
+        android:text="Already a member ? LOGIN Here"
         android:textColor="#050505"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
