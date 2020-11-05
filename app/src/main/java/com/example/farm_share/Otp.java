@@ -73,7 +73,7 @@ public class Otp extends AppCompatActivity {
                         requestOTP(Vphone);
 
                     }
-                    else
+                     else
                     {
                         Vphone.setError("Phone Number is Not Valid");
                     }
