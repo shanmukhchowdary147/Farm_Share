@@ -175,6 +175,8 @@ public class Add_Equip extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Uri> task) {
                         if (task.isSuccessful())
                         {
+                            downloadImageUrl = task.getResult() .toString() ;
+
                             Toast.makeText(Add_Equip.this, "got Equipment image url succesfully ", Toast.LENGTH_SHORT).show();
                             SaveEquipInfoTodatabase();
                         }
@@ -200,11 +202,13 @@ public class Add_Equip extends AppCompatActivity {
         Equipmap.put("ContactNumber",DContactNumber);
 
         EquipsRef.child(EquipRandomKey).updateChildren(Equipmap)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful())
                         {
+                            Intent intent = new Intent(Add_Equip.this, AdminCategoryActivity.class);
+                            startActivity(intent);
                             Toast.makeText(Add_Equip.this, "Equipment is added Successfully ", Toast.LENGTH_SHORT).show();
                         }
                         else
