@@ -86,7 +86,7 @@ public class Add_Equip extends AppCompatActivity {
 //        galleryIntent.setType("Image/*");
 //        startActivityForResult(galleryIntent, GalleryPick);
 //    }
-
+//
 //    @Override
 //    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
@@ -94,7 +94,7 @@ public class Add_Equip extends AppCompatActivity {
 //            ImageUri=data.getData();
 //            EquipImage.setImageURI(ImageUri);
 //        }
-
+//
 //    }
 
     private void ValidateEquipData()
@@ -105,16 +105,12 @@ public class Add_Equip extends AppCompatActivity {
         DDays = Days.getText().toString();
         DContactNumber = ContactNumber.getText().toString();
 
-//        if (ImageUri == null)
+//       if (TextUtils.isEmpty(DTitle))
 //        {
-//            Toast.makeText(this, "Product image is mandatory...", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Please write product description...", Toast.LENGTH_SHORT).show();
 //        }
 //        else
-        if (TextUtils.isEmpty(DTitle))
-        {
-            Toast.makeText(this, "Please write product description...", Toast.LENGTH_SHORT).show();
-        }
-        else if (TextUtils.isEmpty(DAdditionalInfo))
+        if (TextUtils.isEmpty(DAdditionalInfo))
         {
             Toast.makeText(this, "Please write product Price...", Toast.LENGTH_SHORT).show();
         }
@@ -149,7 +145,7 @@ public class Add_Equip extends AppCompatActivity {
         SaveEquipInfoTodatabase();
 
 //        final StorageReference filepath= EquipImagesRef.child(ImageUri.getLastPathSegment() + EquipRandomKey +".jpg");
-//
+
 //        final UploadTask uploadTask = filepath.putFile(ImageUri);
 //        uploadTask.addOnFailureListener(new OnFailureListener() {
 //            @Override
@@ -187,8 +183,8 @@ public class Add_Equip extends AppCompatActivity {
 //                });
 //            }
 //        });
-//
-   }
+
+    }
 
     private void SaveEquipInfoTodatabase() {
         HashMap<String, Object> Equipmap=new HashMap<>();
@@ -218,6 +214,7 @@ public class Add_Equip extends AppCompatActivity {
                         }
                     }
                 });
+
 
     }
 }
