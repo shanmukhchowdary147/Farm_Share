@@ -29,7 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
-    EditText InPassword,InPhone;
+    EditText InPassword,InEmail;
     Button mLoginBtn;
     TextView mCreateBtn,forgotTextLink;
     ProgressBar progressBar;
@@ -44,7 +44,7 @@ public class Login extends AppCompatActivity {
         InPassword =(EditText) findViewById(R.id.password);
         mLoginBtn = (Button)findViewById(R.id.loginBtn);
         mCreateBtn = (TextView)findViewById(R.id.createText);
-        InPhone      =(EditText) findViewById(R.id.phone);
+        InEmail =(EditText) findViewById(R.id.email);
 
         progressBar = findViewById(R.id.progressBar);
 
@@ -69,10 +69,10 @@ public class Login extends AppCompatActivity {
     private void LoginUser() {
 
         String password=InPassword.getText().toString();
-        String phone=InPhone.getText().toString();
-        if (TextUtils.isEmpty(phone))
+        String email=InEmail.getText().toString();
+        if (TextUtils.isEmpty(email))
         {
-            Toast.makeText(this, "Please enter your phone Number", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter your email!!", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(password))
         {
@@ -82,21 +82,21 @@ public class Login extends AppCompatActivity {
         {
 
             progressBar.setVisibility(View.VISIBLE);
-            AllowAccessToAcc(phone,password);
+            AllowAccessToAcc(email,password);
         }
     }
 
-    private void AllowAccessToAcc(final String phone, final String password) {
+    private void AllowAccessToAcc(final String email, final String password) {
         final DatabaseReference RootRef;
         RootRef= FirebaseDatabase.getInstance().getReference();
 
         RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("Users").child(phone).exists())
+                if (dataSnapshot.child("Users").child(email).exists())
                 {
-                    Users userData= dataSnapshot.child("Users").child(phone).getValue(Users.class);
-                    if (userData.getPhone().equals(phone))
+                    Users userData= dataSnapshot.child("Users").getValue(Users.class);
+                    if (userData.getEmail().equals(email))
                     {
                         if (userData.getPassword().equals(password))
                         {

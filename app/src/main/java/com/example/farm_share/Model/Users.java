@@ -1,16 +1,17 @@
 package com.example.farm_share.Model;
 
 public class Users {
-    private String name,phone,password;
+    private String name,phone,password,email;
 
     public Users()
     {
 
     }
 
-    public Users(String name, String phone, String password) {
+    public Users(String name, String phone, String password, String email) {
         this.name = name;
         this.phone = phone;
+        this.email=email;
         this.password = password;
     }
 
@@ -38,4 +39,11 @@ public class Users {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
