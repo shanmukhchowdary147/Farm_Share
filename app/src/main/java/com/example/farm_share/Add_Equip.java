@@ -206,6 +206,8 @@ public class Add_Equip extends AppCompatActivity {
                         if (task.isSuccessful())
                         {
                             Toast.makeText(Add_Equip.this, "Equipment is added Successfully ", Toast.LENGTH_SHORT).show();
+
+
                         }
                         else
                         {
