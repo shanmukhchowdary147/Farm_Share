@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.farm_share.Prevalent.Prevalent;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,8 +26,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
-import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
@@ -99,7 +98,7 @@ public class EditProfile extends AppCompatActivity
         HashMap<String, Object> userMap = new HashMap<>();
         userMap. put("name", Title.getText().toString()) ;
         userMap. put("address", ProfileEmailAddress.getText().toString()) ;
-        userMap. put("phone nCumber", ProfilePhoneNo.getText().toString()) ;
+        userMap. put("phone number", ProfilePhoneNo.getText().toString()) ;
         ref.child(Prevalent.currentOnlineUser.getPhone()).updateChildren(userMap);
 
 
@@ -113,7 +112,7 @@ public class EditProfile extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode== RESULT_OK && data!= null)
+        if(requestCode== CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode== RESULT_OK && data!= null)
         {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             imageUri = result.getUri();
@@ -193,7 +192,7 @@ public class EditProfile extends AppCompatActivity
                          HashMap<String, Object> userMap = new HashMap<>();
                          userMap. put("name", Title.getText().toString()) ;
                          userMap. put("address", ProfileEmailAddress.getText().toString()) ;
-                         userMap. put("phone nCumber", ProfilePhoneNo.getText().toString()) ;
+                         userMap. put("phone number", ProfilePhoneNo.getText().toString()) ;
                          userMap. put("image", myUrl) ;
                           ref.child(Prevalent.currentOnlineUser.getPhone()).updateChildren(userMap);
 
