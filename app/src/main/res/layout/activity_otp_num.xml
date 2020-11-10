@@ -4,48 +4,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wal"
     tools:context=".Otp_num">
 
     <com.hbb20.CountryCodePicker
         android:id="@+id/ccp"
         android:layout_width="115dp"
         android:layout_height="43dp"
-        android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/t1"
         app:layout_constraintHorizontal_bias="0.73"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.332" />
+        app:layout_constraintVertical_bias="0.588" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="155dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="156dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo2" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/arbutus"
+        android:text="Phone Number"
+        android:textColor="#FDFCFC"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="535dp"
+        android:fontFamily="@font/arbutus"
+        android:text="Verification"
+        android:textColor="#FDFCFC"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
         android:id="@+id/t1"
-        android:layout_width="200dp"
+        android:layout_width="230dp"
         android:layout_height="46dp"
-        android:layout_marginStart="16dp"
-        android:ems="10"
-        android:hint="Enter Mobile"
-        android:inputType="textPersonName"
-        android:textSize="20sp"
-        android:textStyle="bold"
         android:layout_marginRight="15dp"
+        android:drawableLeft="@drawable/ic_local_phone_24dp"
+        android:ems="10"
+        android:hint="  phone number"
+        android:inputType="textPersonName"
+        android:textColor="#050505"
+        android:textColorHint="#050505"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ccp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.332" />
+        app:layout_constraintVertical_bias="0.586" />
 
     <Button
 
         android:id="@+id/b1"
         android:layout_width="171dp"
         android:layout_height="50dp"
+        android:background="@drawable/button_corn"
+        android:fontFamily="@font/averia_libre_bold"
         android:text="Get OTP"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.455" />
+        app:layout_constraintVertical_bias="0.765" />
+
+    <TextView
+        android:id="@+id/OLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="83dp"
+        android:fontFamily="@font/arbutus"
+        android:text="Already a Member ? Login Here"
+        android:textColor="#050505"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/b1"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.hbb20.CountryCodePicker;
 
@@ -14,6 +15,8 @@ public class Otp_num extends AppCompatActivity
 {
     CountryCodePicker ccp;
     EditText t1;
+    TextView OLogin;
+
     Button b1;
 
     @Override
@@ -22,9 +25,17 @@ public class Otp_num extends AppCompatActivity
         setContentView(R.layout.activity_otp_num);
 
         t1=(EditText)findViewById(R.id.t1);
+        OLogin=(TextView)findViewById(R.id.OLogin);
         ccp=(CountryCodePicker)findViewById(R.id.ccp);
         ccp.registerCarrierNumberEditText(t1);
         b1=(Button)findViewById(R.id.b1);
+
+        OLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),Login.class));
+            }
+        });
 
          b1.setOnClickListener(new View.OnClickListener() {
             @Override
