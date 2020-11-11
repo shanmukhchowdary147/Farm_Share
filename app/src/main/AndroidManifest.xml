@@ -13,14 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Otp_manage"></activity>
-        <activity android:name=".Otp_num">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
+        <activity
+            android:name=".Otp_manage"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Otp_num"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <activity android:name=".AdminCategoryActivity" />
         <activity
