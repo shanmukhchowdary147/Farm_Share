@@ -27,7 +27,7 @@ public class Equipments {
     }
 
     public void setDays(String days) {
-        this.days = days;
+        this.days = "Available Days :- "+days;
     }
 
     public String getCost() {
@@ -35,7 +35,7 @@ public class Equipments {
     }
 
     public void setCost(String cost) {
-        this.cost = cost;
+        this.cost = "Cost Per Day :- "+cost;
     }
 
     public String getAdditionalInfo() {
@@ -43,7 +43,7 @@ public class Equipments {
     }
 
     public void setAdditionalInfo(String additionalInfo) {
-        this.additionalInfo = additionalInfo;
+        this.additionalInfo = "AdditionalInfo :- "+additionalInfo;
     }
 
     public String getContactNumber() {
@@ -51,6 +51,6 @@ public class Equipments {
     }
 
     public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
+        this.contactNumber = "Contact Number :- "+contactNumber;
     }
 }
