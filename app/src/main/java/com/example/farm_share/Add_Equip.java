@@ -193,11 +193,11 @@ public class Add_Equip extends AppCompatActivity {
         Equipmap.put("time",saveCurrentTime);
 //        Equipmap.put("image",downloadImageUrl);
         Equipmap.put("category",CategoryName);
-        Equipmap.put("Title",DTitle);
-        Equipmap.put("AdditionalInfo",DAdditionalInfo);
-        Equipmap.put("Cost",DCost);
-        Equipmap.put("Days",DDays);
-        Equipmap.put("ContactNumber",DContactNumber);
+        Equipmap.put("title",DTitle);
+        Equipmap.put("additionalInfo",DAdditionalInfo);
+        Equipmap.put("cost",DCost);
+        Equipmap.put("days",DDays);
+        Equipmap.put("contactNumber",DContactNumber);
 
         EquipsRef.child(EquipRandomKey).updateChildren(Equipmap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -206,7 +206,7 @@ public class Add_Equip extends AppCompatActivity {
                         if (task.isSuccessful())
                         {
                             Toast.makeText(Add_Equip.this, "Equipment is added Successfully ", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),Otp_num.class));
+                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         }
                         else
                         {

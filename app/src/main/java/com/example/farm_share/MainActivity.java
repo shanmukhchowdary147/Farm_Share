@@ -57,6 +57,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 i=new Intent(this,Login.class);
                 startActivity(i);
                 break;
+            case R.id.cSearch :
+                i=new Intent(this,Search.class);
+                startActivity(i);
+                break;
         }
 
     }

@@ -13,21 +13,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Search"></activity>
         <activity
             android:name=".Otp_manage"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".Otp_num"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
         <activity android:name=".AdminCategoryActivity" />
         <activity
             android:name=".Add_Equip"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".EditProfile" />
         <activity android:name=".Register" />
-
-        <activity android:name=".Login" >
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
