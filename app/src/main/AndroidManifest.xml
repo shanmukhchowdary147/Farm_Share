@@ -22,8 +22,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".AdminCategoryActivity" />
         <activity
-            android:name=".Add_Equip"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:name=".Add_Equip" />
         <activity android:name=".EditProfile" />
         <activity android:name=".Register" />
         <activity android:name=".Login">
