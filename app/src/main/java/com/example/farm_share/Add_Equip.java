@@ -3,7 +3,6 @@ package com.example.farm_share;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,6 +28,7 @@ import com.google.firebase.storage.UploadTask;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.UUID;
 
 public class Add_Equip extends AppCompatActivity {
 
@@ -36,12 +36,16 @@ public class Add_Equip extends AppCompatActivity {
     private Button AddNew;
     private ImageView EquipImage;
     private EditText Title, AdditionalInfo, Cost, Days, ContactNumber;
-//    private static final int GalleryPick=1;
-//    private Uri ImageUri;
+    private static final int PICK_FILE=1;
+    Uri ImageUri;
+    StorageReference Folder;
+    String ImagePath;
+
     private String EquipRandomKey;
-//    downloadImageUrl;
-//    private StorageReference EquipImagesRef;
+
     private DatabaseReference EquipsRef;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,24 +54,26 @@ public class Add_Equip extends AppCompatActivity {
 
 
         CategoryName = getIntent() .getExtras().get("category").toString();
-//        EquipImagesRef = FirebaseStorage.getInstance().getReference().child("Equip Images");
+
         EquipsRef= FirebaseDatabase.getInstance().getReference().child("Equipments");
 
         Toast.makeText(this, CategoryName, Toast.LENGTH_SHORT).show();
         AddNew=(Button) findViewById(R.id.AddNew);
-//        EquipImage=(ImageView) findViewById(R.id.EquipImage);
+
         Title=(EditText) findViewById(R.id.Title);
         AdditionalInfo=(EditText) findViewById(R.id. AdditionalInfo);
         Cost=(EditText) findViewById(R.id.Cost);
         Days=(EditText) findViewById(R.id.Days);
         ContactNumber=(EditText) findViewById(R.id.ContactNumber);
+        EquipImage=findViewById(R.id.EquipImage);
 
-//        EquipImage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                OpenGallery();
-//            }
-//        });
+
+        EquipImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                choosePictures();
+            }
+        });
 
         AddNew.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,22 +86,27 @@ public class Add_Equip extends AppCompatActivity {
 
     }
 
-//    private void OpenGallery() {
-//        Intent galleryIntent = new Intent();
-//        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-//        galleryIntent.setType("Image/*");
-//        startActivityForResult(galleryIntent, GalleryPick);
-//    }
-//
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode==GalleryPick && resultCode==RESULT_OK && data!=null){
-//            ImageUri=data.getData();
-//            EquipImage.setImageURI(ImageUri);
-//        }
-//
-//    }
+    private void choosePictures() {
+        Intent intent=new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(intent,PICK_FILE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==1 && resultCode==RESULT_OK && data!=null )
+        {
+            ImageUri= data.getData();
+            Folder=FirebaseStorage.getInstance().getReference().child("Equipment Images");
+            EquipImage.setImageURI(ImageUri);
+
+            ValidateEquipData();
+        }
+    }
+
+
+
 
     private void ValidateEquipData()
     {
@@ -105,12 +116,10 @@ public class Add_Equip extends AppCompatActivity {
         DDays = Days.getText().toString();
         DContactNumber = ContactNumber.getText().toString();
 
-//       if (TextUtils.isEmpty(DTitle))
-//        {
-//            Toast.makeText(this, "Please write product description...", Toast.LENGTH_SHORT).show();
-//        }
-//        else
-        if (TextUtils.isEmpty(DAdditionalInfo))
+       if (TextUtils.isEmpty(DTitle))      {
+            Toast.makeText(this, "Please write product description...", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(DAdditionalInfo))
         {
             Toast.makeText(this, "Please write product Price...", Toast.LENGTH_SHORT).show();
         }
@@ -142,47 +151,24 @@ public class Add_Equip extends AppCompatActivity {
         saveCurrentTime = currentTime.format(calendar.getTime());
 
         EquipRandomKey = saveCurrentDate + saveCurrentTime;
-        SaveEquipInfoTodatabase();
 
-//        final StorageReference filepath= EquipImagesRef.child(ImageUri.getLastPathSegment() + EquipRandomKey +".jpg");
+        final StorageReference file_name=Folder.child("image"+ImageUri.getLastPathSegment()+ EquipRandomKey +".jpg");
+        file_name.putFile(ImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                file_name.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        ImagePath=String.valueOf(uri);
+                        SaveEquipInfoTodatabase();
+                    }
+                });
 
-//        final UploadTask uploadTask = filepath.putFile(ImageUri);
-//        uploadTask.addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                String message= e.toString();
-//                Toast.makeText(Add_Equip.this, "ERROR!! ", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        }) .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//            @Override
-//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                Toast.makeText(Add_Equip.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
-//
-//                Task<Uri>urlTask=uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-//                    @Override
-//                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-//                        if (!task.isSuccessful())
-//                        {
-//                            throw task.getException();
-//                        }
-//                        downloadImageUrl=filepath.getDownloadUrl().toString();
-//                        return filepath.getDownloadUrl();
-//                    }
-//                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Uri> task) {
-//                        if (task.isSuccessful())
-//                        {
-//                            downloadImageUrl=task.getResult().toString();
-//                            Toast.makeText(Add_Equip.this, "got Equipment image url succesfully", Toast.LENGTH_SHORT).show();
-//                            SaveEquipInfoTodatabase();
-//                        }
-//
-//                    }
-//                });
-//            }
-//        });
+            }
+        });
+
+
+
 
     }
 
@@ -191,7 +177,7 @@ public class Add_Equip extends AppCompatActivity {
         Equipmap.put("Eid",EquipRandomKey);
         Equipmap.put("date",saveCurrentDate);
         Equipmap.put("time",saveCurrentTime);
-//        Equipmap.put("image",downloadImageUrl);
+        Equipmap.put("image",ImagePath);
         Equipmap.put("category",CategoryName);
         Equipmap.put("title",DTitle);
         Equipmap.put("additionalInfo",DAdditionalInfo);

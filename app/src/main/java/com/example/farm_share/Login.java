@@ -100,6 +100,7 @@ public class Login extends AppCompatActivity {
                     {
                         if (userData.getPassword().equals(password))
                         {
+
                             Toast.makeText(Login.this, "Login Success..", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
                             progressBar.setVisibility(View.GONE);

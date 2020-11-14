@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.farm_share.Prevalent.Prevalent;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,6 +30,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import io.paperdb.Paper;
 
 public class Register extends AppCompatActivity {
 
@@ -49,6 +52,9 @@ public class Register extends AppCompatActivity {
         InPhone      =(EditText) findViewById(R.id.phone);
         mRegisterBtn= (Button)findViewById(R.id.registerBtn);
         mLoginBtn   = (TextView)findViewById(R.id.createText);
+
+        Paper.init(this);
+
 
         progressBar = findViewById(R.id.progressBar);
 
@@ -122,6 +128,9 @@ public class Register extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful())
                                     {
+                                        Paper.book().write(Prevalent.UserPhoneKey,phone);
+                                        Paper.book().write(Prevalent.UserPasswordKey,password);
+
                                         Toast.makeText(Register.this, "Your Account has been Created", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(getApplicationContext(),MainActivity.class));
                                         progressBar.setVisibility(View.GONE);

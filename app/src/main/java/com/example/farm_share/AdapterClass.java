@@ -3,10 +3,13 @@ package com.example.farm_share;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -32,6 +35,7 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
         myViewHolder.contactNumber.setText(list.get(i).getContactNumber());
         myViewHolder.days.setText(list.get(i).getDays());
         myViewHolder.cost.setText(list.get(i).getCost());
+        Picasso.get().load(list.get(i).getImage()).into(myViewHolder.image);
 
     }
 
@@ -42,6 +46,7 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView title,days,cost,additionalInfo,contactNumber;
+        ImageView image;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             title=itemView.findViewById(R.id.Equip_name);
@@ -49,6 +54,7 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
             contactNumber=itemView.findViewById(R.id.Equip_CNumber);
             cost=itemView.findViewById(R.id.Equip_cost);
             days=itemView.findViewById(R.id.Equip_days);
+            image=(ImageView)itemView.findViewById(R.id.Equip_image);
         }
     }
 }

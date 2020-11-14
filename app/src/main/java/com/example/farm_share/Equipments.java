@@ -1,17 +1,18 @@
 package com.example.farm_share;
 
 public class Equipments {
-    private String title,days,cost,additionalInfo,contactNumber;
+    private String title,days,cost,additionalInfo,contactNumber,image;
 
     public Equipments() {
     }
 
-    public Equipments(String title, String days, String cost, String additionalInfo, String contactNumber) {
+    public Equipments(String title, String days, String cost, String additionalInfo, String contactNumber,String image) {
         this.title = title;
         this.days = days;
         this.cost = cost;
         this.additionalInfo = additionalInfo;
         this.contactNumber = contactNumber;
+        this.image=image;
     }
 
     public String getTitle() {
@@ -52,5 +53,13 @@ public class Equipments {
 
     public void setContactNumber(String contactNumber) {
         this.contactNumber = "Contact Number :- "+contactNumber;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

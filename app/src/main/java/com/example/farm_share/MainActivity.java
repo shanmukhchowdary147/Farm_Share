@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.google.firebase.auth.FirebaseAuth;
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public CardView cardEditprofile;
@@ -25,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cardEditprofile=(CardView) findViewById(R.id.cEditProfile);
         cardSearch=(CardView) findViewById(R.id.cSearch);
         cardAdd=(CardView) findViewById(R.id.cAdd);
-        cardActivity=(CardView) findViewById(R.id.cActivity);
+        cardActivity=(CardView) findViewById(R.id.cFeedback);
         cardFav=(CardView) findViewById(R.id.cFav);
         cardLogout=(CardView) findViewById(R.id.cLogout);
 
@@ -61,6 +59,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 i=new Intent(this,Search.class);
                 startActivity(i);
                 break;
+            case R.id.cFeedback :
+                i=new Intent(this,Feedback.class);
+                startActivity(i);
+                break;
+
         }
 
     }

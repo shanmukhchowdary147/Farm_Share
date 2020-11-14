@@ -31,6 +31,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:16.0.5'
     implementation 'com.firebaseui:firebase-ui-database:3.2.2'
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'io.paperdb:paperdb:2.6'
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation 'com.google.firebase:firebase-auth:16.0.5'
     implementation 'com.google.firebase:firebase-database:16.0.4'

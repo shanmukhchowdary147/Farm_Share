@@ -154,7 +154,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cActivity"
+            android:id="@+id/cFeedback"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
@@ -181,7 +181,7 @@
                     android:layout_below="@id/imageView5"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-                    android:text="ACTIVITY"
+                    android:text="FEEDBACK"
                     android:textColor="#5DA80E"
                     android:textSize="18sp" />
 
