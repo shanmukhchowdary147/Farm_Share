@@ -8,7 +8,7 @@
     tools:context=".EditProfile">
 
     <EditText
-        android:id="@+id/title"
+        android:id="@+id/FullName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -47,17 +47,17 @@
         android:textColorHint="#050505"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/FullName" />
 
     <EditText
-        android:id="@+id/profilePhoneNo"
+        android:id="@+id/profilePassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
-        android:hint="Phone"
+        android:hint="Password"
         android:inputType="phone"
         android:textColor="#3949AB"
         android:textColorHint="#050505"
@@ -66,31 +66,19 @@
         app:layout_constraintTop_toBottomOf="@+id/profileEmailAddress" />
 
     <Button
-        android:id="@+id/saveProfileInfo"
+        android:id="@+id/update"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="310dp"
         android:background="@color/btColor"
-        android:text="Save"
+        android:onClick="update"
+        android:text="UPDATE"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profilePhoneNo" />
-
-    <TextView
-        android:id="@+id/profileChangeTextbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="159dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginBottom="41dp"
-        android:text="Change Profile"
-        android:textColor="#050505"
-        app:layout_constraintBottom_toTopOf="@+id/title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/profilePassword"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

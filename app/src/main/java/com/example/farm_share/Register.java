@@ -53,6 +53,7 @@ public class Register extends AppCompatActivity {
         mRegisterBtn= (Button)findViewById(R.id.registerBtn);
         mLoginBtn   = (TextView)findViewById(R.id.createText);
 
+
         Paper.init(this);
 
 
@@ -116,6 +117,12 @@ public class Register extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (!(dataSnapshot.child("Users").child(phone).exists()))
                 {
+                    Intent intent=new Intent(Register.this,EditProfile.class);
+                    intent.putExtra("NAME",name);
+                    intent.putExtra("EMAIL",email);
+                    intent.putExtra("PHONE",phone);
+                    intent.putExtra("PASSWORD",password);
+                    startActivity(intent);
                     HashMap<String, Object> userdataMap=new HashMap<>();
                     userdataMap.put("phone",phone);
                     userdataMap.put("name",name);
@@ -128,9 +135,6 @@ public class Register extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful())
                                     {
-                                        Paper.book().write(Prevalent.UserPhoneKey,phone);
-                                        Paper.book().write(Prevalent.UserPasswordKey,password);
-
                                         Toast.makeText(Register.this, "Your Account has been Created", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(getApplicationContext(),MainActivity.class));
                                         progressBar.setVisibility(View.GONE);

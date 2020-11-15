@@ -9,16 +9,20 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.farm_share.Model.Users;
 import com.example.farm_share.Prevalent.Prevalent;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,223 +38,96 @@ import java.util.HashMap;
 
 public class EditProfile extends AppCompatActivity
 {
-    private ImageView ProfileImageView;
-    private EditText Title, ProfileEmailAddress, ProfilePhoneNo ;
-    private Button SaveProfileInfo;
-    private TextView ProfileChangeTextbtn;
 
-    private Uri imageUri;
-    private String myUrl = "";
-    private StorageTask uploadTask;
-    private StorageReference storageProfilePrictureRef;
-    private String checker = "";
+    private static final String TAG ="Shannu" ;
+
+    EditText ProfileFullName, ProfileEmailAddress, ProfilePassword ;
+
+    String _Name,_Email,_Password,_Phone;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        ProfileImageView = (ImageView) findViewById(R.id.profileImageView) ;
-        Title = (EditText) findViewById(R.id.title) ;
-        ProfileEmailAddress = (EditText) findViewById(R.id.profileEmailAddress) ;
-        ProfilePhoneNo = (EditText) findViewById(R.id.profilePhoneNo) ;
-        SaveProfileInfo = (Button) findViewById(R.id.saveProfileInfo) ;
-        ProfileChangeTextbtn = (TextView) findViewById(R.id.profileChangeTextbtn) ;
-
-        userInfoDisplay(ProfileImageView, Title, ProfilePhoneNo, ProfileEmailAddress );
-        
-        SaveProfileInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                if (checker.equals("clicked"))
-                {
-                     userInfoSaved();
-                }
-                else
-                {
-                    updateOnlyUserInfo();
-
-                }
-
-            }
-        });
+        reference=FirebaseDatabase.getInstance().getReference("Users");
 
 
-        ProfileChangeTextbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                checker =  "clicked";
+        ProfileFullName= findViewById(R.id.FullName) ;
+        ProfileEmailAddress = findViewById(R.id.profileEmailAddress) ;
+        ProfilePassword = findViewById(R.id.profilePassword) ;
 
-                CropImage.activity(imageUri)
-                        .setAspectRatio(1, 1)
-                        .start(EditProfile.this);
+        showAllUserData();
 
-            }
-        });
     }
 
-    private void updateOnlyUserInfo()
+    private void showAllUserData() {
+
+        Bundle bundle=getIntent().getExtras();
+        _Name=bundle.getString("NAME");
+        _Email=bundle.getString("EMAIL");
+        _Password=bundle.getString("PASSWORD");
+        _Phone=bundle.getString("PHONE");
+
+        ProfileFullName.setText(_Name);
+        ProfileEmailAddress.setText(_Email);
+        ProfilePassword.setText(_Password);
+    }
+
+    public void update(View view)
     {
-        DatabaseReference ref = FirebaseDatabase.getInstance() .getReference() .child("Users") ;
-
-        HashMap<String, Object> userMap = new HashMap<>();
-        userMap. put("name", Title.getText().toString()) ;
-        userMap. put("address", ProfileEmailAddress.getText().toString()) ;
-        userMap. put("phone number", ProfilePhoneNo.getText().toString()) ;
-        ref.child(Prevalent.currentOnlineUser.getPhone()).updateChildren(userMap);
-
-
-        startActivity(new Intent(EditProfile.this, MainActivity.class));
-        Toast.makeText(EditProfile.this, "Profile Info update successfully.", Toast.LENGTH_SHORT).show();
-        finish();
+        if (isNameChanged() || isPasswordChanged() || isEmailChanged())
+        {
+            Toast.makeText(this, "Information Updated", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, "Data Cannot be Updated!!", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode== CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode== RESULT_OK && data!= null)
+    private boolean isPasswordChanged() {
+        if(!_Password.equals(ProfilePassword.getText().toString()))
         {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            imageUri = result.getUri();
-
-            ProfileImageView.setImageURI(imageUri);
+            reference.child(_Phone).child("password").setValue(ProfilePassword.getText().toString());
+            _Password=ProfilePassword.getText().toString();
+            return true;
         }
         else
         {
-            Toast.makeText(this, "Error, Try Again.", Toast.LENGTH_SHORT).show();
-
-            startActivity(new Intent(EditProfile.this, EditProfile.class));
-            finish();
+            return false;
         }
-    }
-
-    private void userInfoSaved()
-    {
-        if (TextUtils.isEmpty(Title.getText().toString()))
-        {
-            Toast.makeText(this, "Name is mandatory.", Toast.LENGTH_SHORT).show();
-        }
-        else if (TextUtils.isEmpty(ProfileEmailAddress.getText().toString()))
-        {
-            Toast.makeText(this, "Email is mandatory.", Toast.LENGTH_SHORT).show();
-        }
-        else if (TextUtils.isEmpty(ProfilePhoneNo.getText().toString()))
-        {
-            Toast.makeText(this, "Number is mandatory.", Toast.LENGTH_SHORT).show();
-        }
-        else if(checker.equals("clicked"))
-        {
-            uploadImage();
-        }
-
 
     }
 
-    private void uploadImage()
-    {
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Update Profile");
-        progressDialog.setMessage("Please wait, while we are updating your account information");
-        progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.show();
-
-        if (imageUri != null)
+    private boolean isEmailChanged() {
+        if(!_Email.equals(ProfileEmailAddress.getText().toString()))
         {
-            final StorageReference fileRef = storageProfilePrictureRef
-                    .child(Prevalent.currentOnlineUser.getPhone() + ".jpg");
-
-             uploadTask = fileRef.putFile(imageUri);
-
-             uploadTask.continueWithTask(new Continuation() {
-                 @Override
-                 public Object then(@NonNull Task task) throws Exception
-                 {
-                     if (!task.isSuccessful())
-                     {
-                         throw task.getException();
-                     }
-
-                     return fileRef.getDownloadUrl();
-
-                 }
-             })
-             .addOnCompleteListener(new OnCompleteListener<Uri>() {
-                 @Override
-                 public void onComplete(@NonNull Task<Uri> task)
-                 {
-                     if (task.isSuccessful())
-                     {
-                         Uri downloadUrl = task.getResult() ;
-                         myUrl = downloadUrl.toString();
-
-                         DatabaseReference ref = FirebaseDatabase.getInstance() .getReference() .child("Users") ;
-
-                         HashMap<String, Object> userMap = new HashMap<>();
-                         userMap. put("name", Title.getText().toString()) ;
-                         userMap. put("address", ProfileEmailAddress.getText().toString()) ;
-                         userMap. put("phone number", ProfilePhoneNo.getText().toString()) ;
-                         userMap. put("image", myUrl) ;
-                          ref.child(Prevalent.currentOnlineUser.getPhone()).updateChildren(userMap);
-
-                         progressDialog.dismiss();
-
-                         startActivity(new Intent(EditProfile.this, MainActivity.class));
-                         Toast.makeText(EditProfile.this, "Profile Info update successfully.", Toast.LENGTH_SHORT).show();
-                         finish();
-                     }
-                     else
-                     {
-                         progressDialog.dismiss();
-                         Toast.makeText(EditProfile.this, "Error.", Toast.LENGTH_SHORT).show();
-                     }
-
-                 }
-             });
-
+            reference.child(_Phone).child("email").setValue(ProfileEmailAddress.getText().toString());
+            _Email=ProfileEmailAddress.getText().toString();
+            return true;
         }
         else
         {
-            Toast.makeText(this, "image is not selected.", Toast.LENGTH_SHORT).show();
+            return false;
         }
 
-
-        }
-
-    private void userInfoDisplay(final ImageView ProfileImageView, final EditText Title, final EditText ProfilePhoneNo, final EditText ProfileEmailAddress)
-    {
-        DatabaseReference UsersRef = FirebaseDatabase.getInstance() .getReference() .child("Users").child(Prevalent.currentOnlineUser.getPhone());
-
-        UsersRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                if (dataSnapshot.exists())
-                {
-                    if (dataSnapshot.child("image").exists())
-                    {
-                        String image = dataSnapshot.child("image").getValue().toString();
-                        String name = dataSnapshot.child("name").getValue().toString();
-                        String phone = dataSnapshot.child("password").getValue().toString();
-                        String address = dataSnapshot.child("address").getValue().toString();
-
-                        Picasso.get() .load(image) .into(ProfileImageView);
-                        Title.setText(name);
-                        ProfilePhoneNo.setText(phone);
-                        ProfileEmailAddress.setText(address);
-
-                    }
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
     }
+
+
+    private boolean isNameChanged() {
+        if(!_Name.equals(ProfileFullName.getText().toString()))
+        {
+            reference.child(_Phone).child("name").setValue(ProfileFullName.getText().toString());
+            _Name=ProfileFullName.getText().toString();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
 }
