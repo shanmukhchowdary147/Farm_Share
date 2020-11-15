@@ -40,6 +40,7 @@ public class EditProfile extends AppCompatActivity
 {
 
     private static final String TAG ="Shannu" ;
+    private Button cancel;
 
     EditText ProfileFullName, ProfileEmailAddress, ProfilePassword ;
 
@@ -53,10 +54,17 @@ public class EditProfile extends AppCompatActivity
 
         reference=FirebaseDatabase.getInstance().getReference("Users");
 
-
         ProfileFullName= findViewById(R.id.FullName) ;
         ProfileEmailAddress = findViewById(R.id.profileEmailAddress) ;
         ProfilePassword = findViewById(R.id.profilePassword) ;
+        cancel=(Button)findViewById(R.id.cancel);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            }
+        });
 
         showAllUserData();
 
@@ -79,6 +87,7 @@ public class EditProfile extends AppCompatActivity
     {
         if (isNameChanged() || isPasswordChanged() || isEmailChanged())
         {
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
             Toast.makeText(this, "Information Updated", Toast.LENGTH_SHORT).show();
         }
         else{
