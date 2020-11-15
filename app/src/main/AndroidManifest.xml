@@ -14,15 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Feedback"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:name=".Feedback" />
         <activity android:name=".Search" />
         <activity
             android:name=".Otp_manage"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AppTheme2" />
         <activity
             android:name=".Otp_num"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AppTheme2" />
         <activity android:name=".AdminCategoryActivity" />
         <activity android:name=".Add_Equip" />
         <activity android:name=".EditProfile" />
@@ -36,7 +35,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AppTheme2" />
 
         <meta-data
             android:name="preloaded_fonts"

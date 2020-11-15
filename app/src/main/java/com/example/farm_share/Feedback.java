@@ -45,7 +45,6 @@ public class Feedback extends AppCompatActivity {
                 String Ccomment=comment.getText().toString();
                  if (TextUtils.isEmpty(Cissue))
                  {
-                     startActivity(new Intent(getApplicationContext(),MainActivity.class));
                      Toast.makeText(Feedback.this, "Please tell us your issue!", Toast.LENGTH_SHORT).show();
                  }
                  else
@@ -82,6 +81,7 @@ public class Feedback extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
+                                startActivity(new Intent(getApplicationContext(),MainActivity.class));
                                 Toast.makeText(Feedback.this, "feedback Received", Toast.LENGTH_SHORT).show();
                             }
                         })
