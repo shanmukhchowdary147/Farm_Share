@@ -1,19 +1,20 @@
 package com.example.farm_share.Model;
 
 public class Users {
-    private String name,phone,password, image, address ;
+    private String name,phone,password,email, image, address ;
 
     public Users()
     {
 
     }
 
-    public Users(String name, String phone, String password, String image, String address) {
+    public Users(String name, String phone, String password,String email, String image, String address) {
         this.name = name;
         this.phone = phone;
         this.password = password;
         this.image = image;
         this.address = address;
+        this.email=email;
     }
 
 
@@ -55,5 +56,13 @@ public class Users {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

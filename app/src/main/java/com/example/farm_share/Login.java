@@ -100,6 +100,14 @@ public class Login extends AppCompatActivity {
                     {
                         if (userData.getPassword().equals(password))
                         {
+                            String Lname=userData.getName();
+                            String Lemail=userData.getEmail();
+                            Intent intent=new Intent(Login.this,EditProfile.class);
+                            intent.putExtra("NAME",Lname);
+                            intent.putExtra("EMAIL",Lemail);
+                            intent.putExtra("PHONE",phone);
+                            intent.putExtra("PASSWORD",password);
+                            startActivity(intent);
 
                             Toast.makeText(Login.this, "Login Success..", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));

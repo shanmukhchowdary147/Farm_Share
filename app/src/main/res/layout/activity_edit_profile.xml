@@ -12,8 +12,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="287dp"
         android:layout_marginEnd="24dp"
+        android:drawableLeft="@drawable/ic_person_24dp"
         android:ems="10"
         android:hint="Your Name"
         android:inputType="textPersonName"
@@ -21,17 +22,7 @@
         android:textColorHint="#050505"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileImageView" />
-
-    <ImageView
-        android:id="@+id/profileImageView"
-        android:layout_width="131dp"
-        android:layout_height="143dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_person_24dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/profileEmailAddress"
@@ -40,6 +31,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="24dp"
+        android:drawableLeft="@drawable/ic_email_24dp"
         android:ems="10"
         android:hint="Your Email Address"
         android:inputType="textEmailAddress"
@@ -56,6 +48,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="24dp"
+        android:drawableLeft="@drawable/ic_security"
         android:ems="10"
         android:hint="Password"
         android:inputType="phone"

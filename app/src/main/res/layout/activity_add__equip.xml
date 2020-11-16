@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,102 +14,121 @@
         android:layout_width="250dp"
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="81dp"
         android:cropToPadding="false"
         android:scaleType="centerCrop"
-        android:src="@drawable/product_image" />
-
+        android:src="@drawable/product_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/EquipImage"
-        android:layout_marginLeft="45dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginRight="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="30dp"
         android:hint="Title"
         android:inputType="textMultiLine"
         android:padding="20dp"
         android:textColor="#050505"
-        android:textColorHint="#050505" />
-
+        android:textColorHint="#050505"
+        app:layout_constraintBottom_toTopOf="@+id/AdditionalInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EquipImage" />
 
     <EditText
         android:id="@+id/AdditionalInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/Title"
-        android:layout_marginLeft="45dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
         android:hint="Addtional Info(company etc)"
         android:inputType="textMultiLine"
         android:padding="20dp"
         android:textColor="#050505"
-        android:textColorHint="#050505" />
-
+        android:textColorHint="#050505"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
 
     <EditText
         android:id="@+id/Cost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/AdditionalInfo"
-        android:layout_marginLeft="45dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
         android:hint="Cost per day"
         android:inputType="textMultiLine"
         android:padding="20dp"
         android:textColor="#050505"
-        android:textColorHint="#050505" />
-
+        android:textColorHint="#050505"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AdditionalInfo" />
 
     <Button
         android:id="@+id/AddNew"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ContactNumber"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="59dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginTop="30dp"
         android:background="#5DA80E"
         android:padding="12dp"
         android:text="ADD"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ContactNumber" />
 
     <EditText
         android:id="@+id/Days"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/Cost"
-        android:layout_marginLeft="45dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Number of days available"
         android:inputType="number"
         android:padding="20dp"
         android:textColor="#050505"
-        android:textColorHint="#050505" />
+        android:textColorHint="#050505"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Cost" />
 
     <EditText
         android:id="@+id/ContactNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/Days"
-        android:layout_marginLeft="45dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="contact number"
         android:inputType="number"
         android:padding="20dp"
         android:textColor="#050505"
-        android:textColorHint="#050505" />
+        android:textColorHint="#050505"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Days" />
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

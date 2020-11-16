@@ -71,7 +71,7 @@
         <ImageView
             android:id="@+id/Equip_image"
             android:layout_width="match_parent"
-            android:layout_height="183dp"
+            android:layout_height="215dp"
             android:scaleType="centerCrop" />
 
     </LinearLayout>

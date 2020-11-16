@@ -67,7 +67,7 @@
         android:id="@+id/submit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="213dp"
+        android:layout_marginTop="170dp"
         android:background="#3BA310"
         android:fontFamily="@font/averia_libre_bold"
         android:text="SUBMIT"
