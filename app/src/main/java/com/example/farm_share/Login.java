@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
+    private static final String TAG ="shannu2" ;
     EditText InPassword,InPhone;
     Button mLoginBtn;
     TextView mCreateBtn,forgotTextLink;
@@ -108,6 +110,7 @@ public class Login extends AppCompatActivity {
                             intent.putExtra("PHONE",phone);
                             intent.putExtra("PASSWORD",password);
                             startActivity(intent);
+                            Log.d(TAG, "onDataChange: "+Lname);
 
                             Toast.makeText(Login.this, "Login Success..", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));

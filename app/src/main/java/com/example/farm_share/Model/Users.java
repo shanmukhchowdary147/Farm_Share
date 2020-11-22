@@ -1,7 +1,7 @@
 package com.example.farm_share.Model;
 
 public class Users {
-    private String name,phone,password,email, image, address ;
+    public String name,phone,password,email, image, address ;
 
     public Users()
     {

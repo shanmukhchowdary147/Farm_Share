@@ -100,6 +100,10 @@ public class Feedback extends AppCompatActivity {
         });
 
     }
+    public void onBackPressed()
+    {
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+    }
 
 
 }

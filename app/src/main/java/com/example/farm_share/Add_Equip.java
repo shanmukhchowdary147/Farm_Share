@@ -204,4 +204,9 @@ public class Add_Equip extends AppCompatActivity {
 
 
     }
+    @Override
+    public void onBackPressed()
+    {
+        startActivity(new Intent(getApplicationContext(),AdminCategoryActivity.class));
+    }
 }

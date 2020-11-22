@@ -44,7 +44,7 @@ public class EditProfile extends AppCompatActivity
 
     EditText ProfileFullName, ProfileEmailAddress, ProfilePassword ;
 
-    String _Name,_Email,_Password,_Phone;
+    String _Name,_Name1,_Email,_Email1,_Password,_Password1,_Phone,_Phone1;
     DatabaseReference reference;
 
     @Override
@@ -73,10 +73,12 @@ public class EditProfile extends AppCompatActivity
     private void showAllUserData() {
 
         Bundle bundle=getIntent().getExtras();
+
         _Name=bundle.getString("NAME");
+        Log.d(TAG, "showAllUserData: "+_Name);
         _Email=bundle.getString("EMAIL");
-        _Password=bundle.getString("PASSWORD");
         _Phone=bundle.getString("PHONE");
+        _Password =bundle.getString("PASSWORD");
 
         ProfileFullName.setText(_Name);
         ProfileEmailAddress.setText(_Email);
@@ -136,6 +138,11 @@ public class EditProfile extends AppCompatActivity
         {
             return false;
         }
+    }
+    @Override
+    public void onBackPressed()
+    {
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
     }
 
 
