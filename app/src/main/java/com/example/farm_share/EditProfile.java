@@ -75,7 +75,7 @@ public class EditProfile extends AppCompatActivity
         Bundle bundle=getIntent().getExtras();
 
         _Name=bundle.getString("NAME");
-        Log.d(TAG, "showAllUserData: "+_Name);
+
         _Email=bundle.getString("EMAIL");
         _Phone=bundle.getString("PHONE");
         _Password =bundle.getString("PASSWORD");

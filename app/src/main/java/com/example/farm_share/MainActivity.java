@@ -73,6 +73,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onBackPressed()
     {
-        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
     }
 }
